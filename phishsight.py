@@ -38,7 +38,7 @@ def print_banner():
     |_| |_|\__,_|\___|_|\_\__,_|_| |_|\__,_|\__|
                                             
     Local Phishing Page Analyzer & Deceptor
-    Author: [Your-Github-Username]
+    Author: [azod814]
     Version: 1.0
     ==========================================
     """
@@ -194,4 +194,25 @@ def main():
             print(style_text("\n[*] Generating decoy page...", color=Fore.YELLOW))
             os.makedirs(args.output, exist_ok=True)
             # Use a safe filename based on the domain
-            domain = urlparse(args.url).netloc.replace('.', '_
+            domain = urlparse(args.url).netloc.replace('.', '_')
+            filename = f"{domain}_decoy.html"
+            output_path = os.path.join(args.output, filename)
+            
+            if generate_decoy(soup, output_path):
+                print(style_text(f"[+] Decoy page generated successfully!", color=Fore.GREEN, bold=True))
+                print(style_text(f"    Saved at: {output_path}", color=Fore.YELLOW))
+               print(style_text("\n[*] You can open this file in a browser to view the harmless version.", color=Fore.CYAN))
+            else:
+                print(style_text("[-] Failed to generate decoy page.", color=Fore.RED))
+
+        print(style_text("\n--- [ END OF REPORT ] ---\n", color=Fore.MAGENTA, bold=True))
+
+    except requests.exceptions.RequestException as e:
+        print(style_text(f"\n[!] Error: Could not fetch the URL. {e}", color=Fore.RED, bold=True))
+        sys.exit(1)
+    except Exception as e:
+        print(style_text(f"\n[!] An unexpected error occurred: {e}", color=Fore.RED, bold=True))
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
