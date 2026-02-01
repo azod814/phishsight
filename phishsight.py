@@ -201,8 +201,7 @@ def main():
             if generate_decoy(soup, output_path):
                 print(style_text(f"[+] Decoy page generated successfully!", color=Fore.GREEN, bold=True))
                 print(style_text(f"    Saved at: {output_path}", color=Fore.YELLOW))
-                  print(style_text(
-        "\n[*] You can open this file in a browser to view the harmless version.",
+                  print(style_text("\n[*] You can open this file in a browser to view the harmless version.",
         color=Fore.CYAN
     ))
 
