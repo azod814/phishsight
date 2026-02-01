@@ -29,7 +29,7 @@ def style_text(text, color=Fore.WHITE, bold=False, italic=False):
 
 def print_banner():
     """Prints a cool, colorful banner."""
-    banner = """
+    banner = r"""
     ==========================================
      _   _            _                      _   
     | | | | __ _  ___| | ____ _ _ __   __ _| |_ 
@@ -201,7 +201,11 @@ def main():
             if generate_decoy(soup, output_path):
                 print(style_text(f"[+] Decoy page generated successfully!", color=Fore.GREEN, bold=True))
                 print(style_text(f"    Saved at: {output_path}", color=Fore.YELLOW))
-               print(style_text("\n[*] You can open this file in a browser to view the harmless version.", color=Fore.CYAN))
+                  print(style_text(
+        "\n[*] You can open this file in a browser to view the harmless version.",
+        color=Fore.CYAN
+    ))
+
             else:
                 print(style_text("[-] Failed to generate decoy page.", color=Fore.RED))
 
